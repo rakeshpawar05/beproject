@@ -1,0 +1,35 @@
+{
+	"keywords": {
+        "add":[
+            "add",
+            "additon of",
+            "sum of"
+        ],
+        "sub":[
+            "sub",
+            "subtract",
+            "subtraction of",
+            "difference of"
+        ],
+        "mul":[
+            "mul",
+            "multiply",
+            "multiplication of",
+            "product of"
+        ],
+        "div":[
+            "div",
+            "divide",
+            "division of"
+        ]
+	},
+	"patterns": [
+		"(set/let) $var1 (to/be) $keyword $var2 (and/to/by) $var3"
+	],
+	"label": [
+		"<assign>",
+		"<lhs> $var1 </lhs>",
+		"<rhs> <add> <arg1> $var2 </arg1> <arg2> $var3 </arg2> </rhs>",
+		"</assign>"
+	]
+}
