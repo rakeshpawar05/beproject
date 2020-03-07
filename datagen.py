@@ -235,9 +235,9 @@ def permute(lines):
         op = kv[0]
         keys = kv[1]
 
-        for c in range(0,4):
-            for b in range(0,4):
-                for a in range(0,4):
+        for c in range(0,5):
+            for b in range(0,5):
+                for a in range(0,5):
                     for key in keys:
                         for p in patterns:
                             line = ""
