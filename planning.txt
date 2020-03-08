@@ -1,0 +1,61 @@
+LIST OF ALL POSSIBLE STATEMENTS
+
+### category1 ###
+define marks as list of student's marks
+define total as an integer
+
+### category2 ###
+initialize a to 1
+initialize counter c to 0
+set counter c to 0
+set c to sum of a and b
+set marks to [1,2]
+
+### category3 ###
+input string into a		### if not defined, datatype is required ###
+input integer into b
+input c as an integer
+input marks  		### enter list of student's marks: ###
+						### no datatype was required because already defined ###
+
+### category4 ###
+output marks		### list of student's marks: [] ###
+output a 				### string a: "asdasfgwrg" 		###
+print a 				### 		(same) 				###
+print "Value: " a  		### Value: (value of a) 		###
+
+### category5 ###
+add a to b  			### add a and b and store value in b ###
+multiply a to b
+div a to b
+sub a to b
+
+### category6 ###
+increment a
+decrement b
+
+### category7 ### (conditionals used in if/while)
+a is greater than b
+a is smaller than b
+a is lesser than b
+a is bigger than b
+a is equal to b
+a is same as b
+					###all not equivalents e.g. a is not greater than b###
+a is equal to size of list marks
+size of marks list smaller than b
+<n>th index of marks equal to c
+c equal to <n>th index of marks
+
+
+
+### category8 ###
+add 1 to marks list
+add a to marks list
+insert b in marks list at index 5
+insert c in marks list
+remove 5th index of marks list
+pop from marks list
+push a to marks list
+enqueue b to marks list
+dequeue marks list
