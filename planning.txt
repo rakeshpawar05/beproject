@@ -1,40 +1,40 @@
 LIST OF ALL POSSIBLE STATEMENTS
 
-### category1 ###
+### category1 ###  ( <define> )
 define marks as list of student's marks
 define total as an integer
 
-### category2 ###
+### category2 ### ( <equals> <var/> <exp/> </equals> )
 initialize a to 1
 initialize counter c to 0
 set counter c to 0
 set c to sum of a and b
 set marks to [1,2]
 
-### category3 ###
+### category3 ### ( <input varname=""> )
 input string into a		### if not defined, datatype is required ###
 input integer into b
 input c as an integer
 input marks  		### enter list of student's marks: ###
 						### no datatype was required because already defined ###
 
-### category4 ###
+### category4 ### ( <print> <exp/> <var/> </print> )
 output marks		### list of student's marks: [] ###
 output a 				### string a: "asdasfgwrg" 		###
 print a 				### 		(same) 				###
 print "Value: " a  		### Value: (value of a) 		###
 
-### category5 ###
+### category5 ### ( <equals> <var/> <exp/> </equals> )
 add a to b  			### add a and b and store value in b ###
 multiply a to b
 div a to b
 sub a to b
 
-### category6 ###
+### category6 ### (<increment> <var/> </increment>)
 increment a
 decrement b
 
-### category7 ### (conditionals used in if/while)
+### category7 ### (conditionals used in if/while) (<op> <var/> <exp/> </op>)
 a is greater than b
 a is smaller than b
 a is lesser than b
@@ -49,7 +49,7 @@ c equal to <n>th index of marks
 
 
 
-### category8 ###
+### category8 ###   (<list:insert>)
 add 1 to marks list
 add a to marks list
 insert b in marks list at index 5
