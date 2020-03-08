@@ -1,0 +1,111 @@
+<module>
+    <generator>
+        <key>
+            <op value="add">
+                add
+                addition of
+                sum of
+                sumation of
+            </op>
+            <op value="sub">
+                sub
+                subtract
+                subtraction of
+                difference of
+            </op>
+            <op value="mul">
+                mul
+                multiply
+                multiplication of
+                product of
+            </op>
+            <op value="div">
+                div
+                divide
+                division of
+            </op>
+        </key>
+        <key>
+            <op>
+                and
+                to
+                by
+                with
+            </op>
+        </key>
+        <phrase>
+            _noise_ _key1_ _var_ _key2_ _var_ _noise_
+        </phrase>
+        <tab>
+            <_key1_>
+                <var name="_var_"/>
+                <var name="_var_"/>
+            </_key1_>
+        </tab>
+    </generator>
+
+    <generator>
+        <key>
+            <op value="add">
+                add
+                addition of
+                sum of
+                sumation of
+            </op>
+            <op value="sub">
+                sub
+                subtract
+                subtraction of
+                difference of
+            </op>
+            <op value="mul">
+                mul
+                multiply
+                multiplication of
+                product of
+            </op>
+            <op value="div">
+                div
+                divide
+                division of
+            </op>
+        </key>
+        <key>
+            <op>
+                let
+                set
+                initialize
+            </op>
+        </key>
+        <key>
+            <op>
+                to
+                with
+            </op>
+        </key>
+        <phrase>
+            _noise_ _key2_ _noise2_ _var_ _key3_ _key1_ _var_ and _var_ _noise_
+        </phrase>
+        <tab>
+            <equals>
+                <var name="_var_"/>
+                <_key1_>
+                    <var name="_var_"/>
+                    <var name="_var_"/>
+                </_key1_>
+            </equals>
+        </tab>
+    </generator>
+    <language name="python">
+        <tag name="add"> _1_ + _2_</tag>
+        <tag name="sub"> _1_ - _2_</tag>
+        <tag name="mul"> _1_ * _2_</tag>
+        <tag name="div"> _1_ / _2_</tag>
+        <tag name="var">
+            _attrib:name_
+        </tag>
+        <tag name="equals">
+            _1_ = _2_
+        </tag>
+    </language>
+</module>
