@@ -11,21 +11,23 @@ class Generator:
         # print(self.phrase)
         # print(self.tab)
         self.permute(self.phrase,self.tab,0)
-        tlines = list(set(self.lines))
+        tlines = list(self.lines)
         self.lines = []
         for l in tlines:
-            nlines = list(set(self.noisify(l)))
+            nlines = list(self.noisify(l))
+            for lll in nlines:
+                print(lll)
             for l in nlines:
                 l = self.var_resolve(l)
                 self.lines.append(l)
                 pass
-        self.lines = set(self.lines)
+        self.lines = sorted(list(set(self.lines)))
     def parse(self,o):
         for o2 in o:
             if o2.tag == "phrase":
                 o2t = re.sub('\s+',' ',o2.text.strip())
                 self.phrase = o2t
-            if o2.tag == "tab":
+            elif o2.tag == "tab":
                 self.tab = ET.tostring(o2[0], encoding='unicode')
                 self.tab = re.sub("\s\s+" ,""   ,self.tab)
                 self.tab = re.sub("\n"  ,""   ,self.tab)
@@ -35,19 +37,25 @@ class Generator:
                 self.tab = re.sub('\"'   ," \" " ,self.tab)
             elif o2.tag == "key":
                 kdict = {}
+                idx = 0
                 for o3 in o2:
+                    idx+=1
                     phrases = []
                     for p in o3.text.split('\n'):
                         pp = re.sub('\s+'," ",p.strip()).strip()
                         if pp:
                             phrases.append(re.sub('\s+'," ",pp))
-                    kdict[o3.get("value")] = phrases
+                    if o3.get("name"):
+                        kdict[o3.get("name")] = phrases
+                    else:
+                        kdict[str(idx)] = phrases
                 self.keywords.append(kdict)
     def permute(self,line,tab,keyidx):
         if keyidx >= len(self.keywords):
             #print(line,"\t\t",tab)
             self.lines.append(line+"\t"+tab)
             return
+        #print("lol")
         for op in self.keywords[keyidx]:
             if op:
                 mytab = re.sub("_key"+str(keyidx+1)+"_",op,tab)
@@ -58,6 +66,8 @@ class Generator:
                 for i,key in enumerate(self.keywords):
                     if i!=keyidx:
                         self.permute(myline,mytab,keyidx+1)
+                if(len(self.keywords)==1):
+                    self.lines.append(myline+"\t"+mytab)
     def noisify(self,line):
         noise_level = 3
         left = line.split('\t')[0]
