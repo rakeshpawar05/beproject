@@ -1,6 +1,6 @@
 LIST OF ALL POSSIBLE STATEMENTS
 
-### category1 ### d ###  
+### category1 ### d ###  (MANUAL)
 ( <define> )
 define marks as list of student's marks
 define total as an integer

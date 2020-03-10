@@ -31,10 +31,10 @@ class Model:
         ans = ""
         for p in prediction[0]:
             out = self.l.reverse_target_word_index[np.argmax(p)]
-            if out != "%end%" and out != "%start%":
-                if out[1:-1].isnumeric() and (int(out[1:-1])-1) < len(s.split()):
+            if out != "_end" and out != "_start":
+                if out[1:].isnumeric() and (int(out[1:])-1) < len(s.split()):
                     #print(out)
-                    ans += s.split()[int(out[1:-1])-1]+" "
+                    ans += s.split()[int(out[1:])-1]+" "
                 else:
                     ans += str(out)+" "
     #             ans += str(out)+" "

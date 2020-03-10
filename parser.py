@@ -1,5 +1,9 @@
 import xml.etree.ElementTree as ET
 import re
+
+MARKER = '_'
+UNK = MARKER+'unk'
+
 class Generator:
     def __init__(self,root):
         self.keywords = []
@@ -58,11 +62,11 @@ class Generator:
         #print("lol")
         for op in self.keywords[keyidx]:
             if op:
-                mytab = re.sub("_key"+str(keyidx+1)+"_",op,tab)
+                mytab = re.sub(MARKER+"key"+str(keyidx+1),op,tab)
             else:
                 mytab = tab
             for k in self.keywords[keyidx][op]:
-                myline = re.sub("_key"+str(keyidx+1)+"_",k,line)
+                myline = re.sub(MARKER+"key"+str(keyidx+1),k,line)
                 for i,key in enumerate(self.keywords):
                     if i!=keyidx:
                         self.permute(myline,mytab,keyidx+1)
@@ -81,27 +85,27 @@ class Generator:
                             n = 0
                             line = ""
                             for w in left.split():
-                                if "_noise" in w:
+                                if MARKER+"noise" in w:
                                     n+=1
                                     if w[-2].isnumeric():
-                                        nmax=int(w[-2]) 
+                                        nmax=int(w[-1]) 
                                     else:
                                         nmax = 5
                                     if n1!=0 and n == 1:
                                         for _ in range(0,min(n1,nmax)):
-                                            line += "_unk_ "
+                                            line += UNK+" "
                                     if n2!=0 and n == 2:
                                         for _ in range(0,min(n2,nmax)):
-                                            line += "_unk_ "
+                                            line += UNK+" "
                                     if n3!=0 and n == 3:
                                         for _ in range(0,min(n3,nmax)):
-                                            line += "_unk_ "
+                                            line += UNK+" "
                                     if n4!=0 and n == 4:
                                         for _ in range(0,min(n4,nmax)):
-                                            line += "_unk_ "
+                                            line += UNK+" "
                                     if n5!=0 and n == 5:
                                         for _ in range(0,min(n5,nmax)):
-                                            line += "_unk_ "
+                                            line += UNK+" "
                                 else:
                                     line += w+" "
                             lines.append(line+"\t"+tab)
@@ -113,21 +117,21 @@ class Generator:
         v = 0
         var_ids={}
         for i,w in enumerate(left.split()):
-            if "_var" in w:
+            if w[0] == MARKER and MARKER+"var" in w:
                 v+=1
                 var_ids[v] = i+1
-                line += "_unk_ "
+                line += UNK+" "
             else:
                 line += w+" "
         line+='\t'
         v = 0
         for i,w in enumerate(tab.split()):
-            if "_var" in w:
-                if "_var_" in w:
+            if w[0] == MARKER and MARKER+"var" in w:
+                if not w[-1].isnumeric():
                     v+=1
-                    line += "_"+str(var_ids[v])+"_ "
+                    line += MARKER+str(var_ids[v])+" "
                 else:
-                    line += "_"+str(var_ids[int(w[-2])])+"_ "
+                    line += MARKER+str(var_ids[int(w[-1])])+" "
             else:
                 line += w+" "
         return line

@@ -35,13 +35,13 @@
             </op>
         </key>
         <phrase>
-            _noise_ _key1_ _var_ _key2_ _var_ _noise_
+            _noise _key1 _var _key2 _var _noise
         </phrase>
         <tab>
-            <_key1_>
-                <var name="_var_"/>
-                <var name="_var_"/>
-            </_key1_>
+            <_key1>
+                <var name="_var"/>
+                <var name="_var"/>
+            </_key1>
         </tab>
     </generator>
 
@@ -85,28 +85,28 @@
             </op>
         </key>
         <phrase>
-            _noise_ _key2_ _noise2_ _var_ _key3_ _key1_ _var_ and _var_ _noise_
+            _noise _key2 _noise2 _var _key3 _key1 _var and _var _noise
         </phrase>
         <tab>
             <equals>
-                <var name="_var_"/>
-                <_key1_>
-                    <var name="_var_"/>
-                    <var name="_var_"/>
-                </_key1_>
+                <var name="_var"/>
+                <_key1>
+                    <var name="_var"/>
+                    <var name="_var"/>
+                </_key1>
             </equals>
         </tab>
     </generator>
     <language name="python">
-        <tag name="add"> _1_ + _2_</tag>
-        <tag name="sub"> _1_ - _2_</tag>
-        <tag name="mul"> _1_ * _2_</tag>
-        <tag name="div"> _1_ / _2_</tag>
+        <tag name="add"> _1 + _2</tag>
+        <tag name="sub"> _1 - _2</tag>
+        <tag name="mul"> _1 * _2</tag>
+        <tag name="div"> _1 / _2</tag>
         <tag name="var">
-            _attrib:name_
+            _attrib:name
         </tag>
         <tag name="equals">
-            _1_ = _2_
+            _1 = _2
         </tag>
     </language>
 </module>

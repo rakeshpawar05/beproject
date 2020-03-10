@@ -12,13 +12,13 @@ class Language:
         self.dataset,self.langdict = dataset
         self.input_lines = []
         self.target_lines = []
-        self.input_words = set(["%end%","_unk_"])
-        self.target_words = set(["%start%","%end%","1","2","3","4","5","6","7","8","9","10"])
+        self.input_words = set(["_end","_unk"])
+        self.target_words = set(["_start","_end","_1","_2","_3","_4","_5","_6","_7","_8","_9","_10"])
         for line in self.dataset:
             input_text, target_text = line.split('\t')
             # We use "tab" as the "start sequence" wordacter
             # for the targets, and "\n" as "end sequence" wordacter.
-            target_text = '%start% ' + target_text + ' %end%'
+            target_text = '_start ' + target_text + ' _end'
             self.input_lines.append(input_text)
             self.target_lines.append(target_text)
             for word in input_text.split():
@@ -29,8 +29,8 @@ class Language:
                     self.target_words.add(word)
 
         self.input_words = sorted(list(self.input_words))
-        self.input_words.remove("_unk_")
-        self.input_words.insert(0,"_unk_")
+        self.input_words.remove("_unk")
+        self.input_words.insert(0,"_unk")
         self.target_words = sorted(list(self.target_words))
         self.num_encoder_tokens = len(self.input_words)
         self.num_decoder_tokens = len(self.target_words)
@@ -72,7 +72,7 @@ class Language:
         for i, (input_text, target_text) in enumerate(zip(self.input_lines, self.target_lines)):
             for t, word in enumerate(input_text.split()):
                 self.encoder_input_data[i, t, self.input_token_index[word]] = 1.
-            self.encoder_input_data[i, t + 1:, self.input_token_index['%end%']] = 1.
+            self.encoder_input_data[i, t + 1:, self.input_token_index['_end']] = 1.
             for t, word in enumerate(target_text.split()):
                 # decoder_target_data is ahead of decoder_input_data by one timestep
                 self.decoder_input_data[i, t, self.target_token_index[word]] = 1.
@@ -80,8 +80,8 @@ class Language:
                     # decoder_target_data will be ahead by one timestep
                     # and will not include the start wordacter.
                     self.decoder_target_data[i, t - 1, self.target_token_index[word]] = 1.
-            self.decoder_input_data[i, t + 1:, self.target_token_index['%end%']] = 1.
-            self.decoder_target_data[i, t:, self.target_token_index['%end%']] = 1.
+            self.decoder_input_data[i, t + 1:, self.target_token_index['_end']] = 1.
+            self.decoder_target_data[i, t:, self.target_token_index['_end']] = 1.
     def encode_input(self,input_text):  
         encoder_input_data = np.zeros(
             (1, self.max_encoder_seq_length, self.num_encoder_tokens),
@@ -90,6 +90,6 @@ class Language:
             if word in self.input_token_index.keys():
                 encoder_input_data[0, t, self.input_token_index[word]] = 1.
             else:
-                encoder_input_data[0, t, self.input_token_index["_unk_"]] = 1.
-        encoder_input_data[0, t + 1:, self.input_token_index['%end%']] = 1.
+                encoder_input_data[0, t, self.input_token_index["_unk"]] = 1.
+        encoder_input_data[0, t + 1:, self.input_token_index['_end']] = 1.
         return encoder_input_data
