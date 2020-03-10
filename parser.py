@@ -16,7 +16,7 @@ class Generator:
         for l in tlines:
             nlines = list(self.noisify(l))
             for lll in nlines:
-                print(lll)
+                #print(lll)
             for l in nlines:
                 l = self.var_resolve(l)
                 self.lines.append(l)
