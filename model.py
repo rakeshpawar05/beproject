@@ -23,8 +23,8 @@ class Model:
         #print(x.shape)
         self.model = keras.Model(inputs,x)
         self.model.compile(optimizer='adam',loss=losses.categorical_crossentropy,metrics=['accuracy'])
-    def train(self,epochs=100):
-        self.model.fit(self.l.encoder_input_data,self.l.decoder_input_data,epochs=epochs,batch_size=100)
+    def train(self,epochs=100,bsize=100):
+        self.model.fit(self.l.encoder_input_data,self.l.decoder_input_data,epochs=epochs,batch_size=bsize)
     def predict(self,s):
         e = self.l.encode_input(s)
         prediction = self.model.predict(e)

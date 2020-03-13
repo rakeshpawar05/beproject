@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module>
+    <generator>
+        <!-- normal-->
+        <key>
+            <op name="greater">
+                greater than
+                bigger than
+                larger than
+            </op>
+            <op name="lower">
+                smaller than
+                lesser than
+                less than
+            </op>
+            <op name="equal">
+                equal to
+                same as
+                equivalent to
+            </op>
+        </key>
+        <phrase>
+            _noise _var is _key1 _var _noise
+        </phrase>
+        <tab>
+            <_key1>
+                <var name="_var"/>
+                <var name="_var"/>
+            </_key1>
+        </tab>
+    </generator>
+
+    <generator>
+        <!-- >= <=-->
+        <key>
+            <op name="eqgreater">
+                greater than
+                bigger than
+                larger than
+            </op>
+            <op name="eqlower">
+                smaller than
+                lesser than
+                less than
+            </op>
+        </key>
+        <key>
+            <op name="equal">
+                equal to
+                same as
+                equivalent to
+            </op>
+        </key>
+        <phrase>
+            _noise _var is _key1 or _key2 _var _noise
+        </phrase>
+        <tab>
+            <_key1>
+                <var name="_var"/>
+                <var name="_var"/>
+            </_key1>
+        </tab>
+    </generator>
+    <generator>
+        <!-- NOT >= <=-->
+        <key>
+            <op name="eqgreater">
+                greater than
+                bigger than
+                larger than
+            </op>
+            <op name="eqlower">
+                smaller than
+                lesser than
+                less than
+            </op>
+        </key>
+        <key>
+            <op name="equal">
+                equal to
+                same as
+                equivalent to
+            </op>
+        </key>
+        <phrase>
+            _noise _var is not _key1 or _key2 _var _noise
+        </phrase>
+        <tab>
+            <not>
+                <_key1>
+                    <var name="_var"/>
+                    <var name="_var"/>
+                </_key1>
+            </not>
+        </tab>
+    </generator>
+    <generator>
+        <!-- NOT =-->
+        <key> 
+            <op name="nequal">
+                equal to
+                same as
+                equivalent to
+            </op>
+        </key>
+        <phrase>
+            _noise _var is not _key1 _var _noise
+        </phrase>
+        <tab>
+            <_key1>
+                    <var name="_var"/>
+                    <var name="_var"/>
+            </_key1>
+        </tab>
+    </generator>
+    <generator>
+        <!-- not > <-->
+        <key>
+            <op name="greater">
+                greater than
+                bigger than
+                larger than
+            </op>
+            <op name="lower">
+                smaller than
+                lesser than
+                less than
+            </op>
+        </key>
+        <phrase>
+            _noise _var is not _key1 _var _noise
+        </phrase>
+        <tab>
+            <not>
+                <_key1>
+                    <var name="_var"/>
+                    <var name="_var"/>
+                </_key1>
+            </not>
+        </tab>
+    </generator>
+    <language name="python">
+        <tag name="equal"> _1 == _2</tag>
+        <tag name="greater"> _1 &lt; _2</tag>
+        <tag name="lower"> _1 &gt; _2</tag>
+        <tag name="eqgreater"> _1 &lt;= _2</tag>
+        <tag name="eqlower"> _1 &gt;= _2</tag>
+        <tag name="not"> !( _1 )</tag>
+        <tag name="nequal"> _1 != _2</tag>
+        <tag name="var">
+            _attrib:name
+        </tag>
+    </language>
+</module>

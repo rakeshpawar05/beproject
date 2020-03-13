@@ -88,13 +88,13 @@
             _noise _key2 _noise2 _var _key3 _key1 _var and _var _noise
         </phrase>
         <tab>
-            <equals>
+            <equal>
                 <var name="_var"/>
                 <_key1>
                     <var name="_var"/>
                     <var name="_var"/>
                 </_key1>
-            </equals>
+            </equal>
         </tab>
     </generator>
     <language name="python">
@@ -105,7 +105,7 @@
         <tag name="var">
             _attrib:name
         </tag>
-        <tag name="equals">
+        <tag name="equal">
             _1 = _2
         </tag>
     </language>

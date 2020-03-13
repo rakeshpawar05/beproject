@@ -135,21 +135,29 @@ class Generator:
             else:
                 line += w+" "
         return line
-def parse_xml(path):
-    root = ET.parse(path).getroot()
+def parse_xml(path=""):
+    import os
     lines = []
     langdict = {}
-    for o in root:
-        if o.tag == "generator":
-            g = Generator(o)
-            lines += g.lines
-        if o.tag == "language":
-            langs = o.get("name").split(",")
-            for l in langs:
-                langdict[o.get("name")] = {}
-                for oo in o:
-                    if oo.tag == "tag":
-                        ostr = re.sub("\n","",oo.text.strip())
-                        ostr = re.sub("\s\s+"," ",ostr.strip())
-                        langdict[o.get("name")][oo.get("name")] = ostr.strip()
+
+    for filename in os.listdir("generators"):
+        if filename.endswith(".xml"): 
+            print("parsing...",filename)
+            path = os.path.join("generators", filename)
+            root = ET.parse(path).getroot()
+            for o in root:
+                if o.tag == "generator":
+                    g = Generator(o)
+                    lines += g.lines
+                if o.tag == "language":
+                    langs = o.get("name").split(",")
+                    for l in langs:
+                        if not o.get("name") in langdict:
+                            langdict[o.get("name")] = {}
+                        for oo in o:
+                            if oo.tag == "tag":
+                                ostr = re.sub("\n","",oo.text.strip())
+                                ostr = re.sub("\s\s+"," ",ostr.strip())
+                                langdict[o.get("name")][oo.get("name")] = ostr.strip()
+            #print(langdict['python'].keys())
     return lines,langdict
